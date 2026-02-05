@@ -1,7 +1,6 @@
 import { Controller, ForbiddenException, NotFoundException, Param, Post, UnauthorizedException } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { User } from './users.entity';
-import e from 'express';
 
 @Controller('users')
 export class UsersController {
