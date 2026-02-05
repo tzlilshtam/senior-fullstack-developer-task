@@ -1,6 +1,7 @@
-import { Controller, NotFoundException, Param, Post, UnauthorizedException } from '@nestjs/common';
+import { Controller, ForbiddenException, NotFoundException, Param, Post, UnauthorizedException } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { User } from './users.entity';
+import e from 'express';
 
 @Controller('users')
 export class UsersController {
@@ -15,6 +16,9 @@ export class UsersController {
     }
     else if(user.status === 'Deleted') {
       throw new UnauthorizedException(`The user - ${username} - is deleted`);
+    }
+    else if(user.status === 'Disabled') {
+      throw new ForbiddenException(`The user - ${username} - is disabled`);
     }
 
     return user;
